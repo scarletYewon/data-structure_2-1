@@ -1,4 +1,4 @@
-package com.company;
+package ds;
 
 public class Link<E> {
     E item;

@@ -1,4 +1,4 @@
-package com.company;
+package ds;
 
 public class LinkedList<E> implements List<E> {
     Link<E> head,tail;

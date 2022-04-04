@@ -1,4 +1,4 @@
-package com.company;
+package ds;
 
 public interface ListIterator<E> {
     public boolean hasNext();
