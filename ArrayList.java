@@ -56,12 +56,14 @@ public class ArrayList<E> implements List<E>{
         System.out.println(Arrays.toString(myList.data));
 
         ListIterator<Integer> itr = myList.listIterator();
-        // while(itr.hasNext()){
-        //     System.out.print(itr.next()+)
-        // }
+        while(itr.hasNext()){
+            System.out.print(itr.next()+" ");
+        }
 
         System.out.println(myList.length());
     }
+
+
     public ListIterator<E> listIterator(){
         return new ListIterator<E>() {
             int pos = 0;
