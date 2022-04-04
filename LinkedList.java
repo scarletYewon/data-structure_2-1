@@ -84,4 +84,29 @@ public class LinkedList<E> implements List<E> {
         myList.clear();
         System.out.println(myList.length());
     }
+
+    public ListIterator<E> listIterator(){
+        // return new ListIterator<E>();
+    }
+    class LinkedListIterator implements ListIterator<E> {
+        Link<E> curr = head;
+        public boolean hasNext(){
+            return curr != tail;
+        }
+        public E next(){
+            curr = curr.next;
+            return curr.item;
+        }
+        public boolean hasPrevious(){
+            return curr != head;
+        }
+        public E previous(){
+            Link<E> tmp = head;
+            while(tmp.next != curr){
+                tmp = tmp.next;
+            }
+            curr = tmp;
+            return curr.next.item;
+        }
+    }
 }
