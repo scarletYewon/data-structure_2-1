@@ -10,5 +10,5 @@ public interface List<E> {
     public E getValue(int pos);
     public E remove(int pos);
     public int length();
-    // public ListIterator<E> listIterator();
+    public ListIterator<E> listIterator();
 }
