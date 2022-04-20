@@ -1,10 +1,10 @@
 package ds;
 
-public class LinkedList<E> implements List<E> {
+public class FreeList<E> implements List<E> {
     Link<E> head,tail;
     int size;
 
-    public LinkedList(){
+    public FreeList(){
         head = tail = new Link<E>(null,null);
         size = 0;
     }
@@ -18,7 +18,7 @@ public class LinkedList<E> implements List<E> {
         for(int i=0; i<pos; i++){
             curr = curr.next;
         }
-        Link<E> n = new Link<>(item,curr.next);
+        Link<E> n = Link.get(item,curr.next);
         curr.next = n;
 
         if(curr == tail){
@@ -27,7 +27,7 @@ public class LinkedList<E> implements List<E> {
         size ++;
     }
     public void append(E item){
-        Link<E> n = new Link<>(item,null);
+        Link<E> n = Link.get(item,null);
         tail.next = n;
         tail = n;
         size++;
@@ -53,14 +53,15 @@ public class LinkedList<E> implements List<E> {
         }
         E ret = curr.next.item;
         if (curr.next == tail) tail = curr;
+        Link<E> tmp = curr.next;
         curr.next = curr.next.next;
+        tmp.release();
         size--;
         return ret;
     }
     public int length(){
         return size;
     }
-
     public String toString(){
         String a = "";
         Link<E> curr=head;
@@ -85,26 +86,47 @@ public class LinkedList<E> implements List<E> {
     }
 
     public ListIterator<E> listIterator(){
-         return new ListIterator<E>() {
-             Link<E> curr = head;
-             public boolean hasNext(){
-                 return curr != tail;
-             }
-             public E next(){
-                 curr = curr.next;
-                 return curr.item;
-             }
-             public boolean hasPrevious(){
-                 return curr != head;
-             }
-             public E previous() {
-                 Link<E> tmp = head;
-                 while (tmp.next != curr) {
-                     tmp = tmp.next;
-                 }
-                 curr = tmp;
-                 return curr.next.item;
-             }
-         };
+        return new ListIterator<E>() {
+            Link<E> curr = head;
+            public boolean hasNext(){
+                return curr != tail;
+            }
+            public E next(){
+                curr = curr.next;
+                return curr.item;
+            }
+            public boolean hasPrevious(){
+                return curr != head;
+            }
+            public E previous() {
+                Link<E> tmp = head;
+                while (tmp.next != curr) {
+                    tmp = tmp.next;
+                }
+                curr = tmp;
+                return curr.next.item;
+            }
+        };
     }
+//    class LinkedListIterator implements ListIterator<E> {
+//        Link<E> curr = head;
+//        public boolean hasNext(){
+//            return curr != tail;
+//        }
+//        public E next(){
+//            curr = curr.next;
+//            return curr.item;
+//        }
+//        public boolean hasPrevious(){
+//            return curr != head;
+//        }
+//        public E previous(){
+//            Link<E> tmp = head;
+//            while(tmp.next != curr){
+//                tmp = tmp.next;
+//            }
+//            curr = tmp;
+//            return curr.next.item;
+//        }
+//    }
 }

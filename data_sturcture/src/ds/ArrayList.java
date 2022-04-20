@@ -54,6 +54,8 @@ public class ArrayList<E> implements List<E>{
         System.out.println(Arrays.toString(myList.data));
         myList.remove(2);
         System.out.println(Arrays.toString(myList.data));
+        myList.clear();
+        System.out.println(Arrays.toString(myList.data));
 
         ListIterator<Integer> itr = myList.listIterator();
         while(itr.hasNext()){
@@ -67,7 +69,6 @@ public class ArrayList<E> implements List<E>{
     public ListIterator<E> listIterator(){
         return new ListIterator<E>() {
             int pos = 0;
-
             public boolean hasNext(){
                 return pos < listSize;
             }

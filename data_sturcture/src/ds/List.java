@@ -1,7 +1,5 @@
 package ds;
 
-import java.util.ListIterator;
-
 public interface List<E> {
     public void clear();
     public void insert(int pos, E item);
