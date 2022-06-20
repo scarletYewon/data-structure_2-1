@@ -3,7 +3,7 @@ from collections import deque
 n, w, L = map(int, input().split())
 truck = deque(map(int, input().split()))
 bridge = deque([0 for _ in range(w)])
-time = 0
+time = w
 
 while True:
     if truck:
@@ -17,5 +17,4 @@ while True:
     else:
         break
 
-time += w
 print(time)
